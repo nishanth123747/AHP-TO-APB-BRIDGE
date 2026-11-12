@@ -1,8 +1,8 @@
 class apb_slave_agent extends uvm_agent;
   `uvm_component_utils(apb_slave_agent)
-  apb_sqr     sqr;
-  apb_driver  drv;
-  apb_monitor mon;
+  apb_sqr     sequencer;
+  apb_driver  driver;
+  apb_monitor monitor;
 
   function new(string name = "apb_slave_agent", uvm_component parent = null);
     super.new(name, parent);
@@ -10,14 +10,15 @@ class apb_slave_agent extends uvm_agent;
 
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    mon = apb_monitor::type_id::create("mon", this);
+    monitor = apb_monitor::type_id::create("monitor", this);
     if (get_is_active() == UVM_ACTIVE) begin
-      sqr = apb_sqr::type_id::create("sqr", this);
-      drv = apb_driver::type_id::create("drv", this);
+      sequencer = apb_sqr::type_id::create("sequencer", this);
+      driver    = apb_driver::type_id::create("driver", this);
     end
   endfunction
 
   function void connect_phase(uvm_phase phase);
-    if (get_is_active() == UVM_ACTIVE) drv.seq_item_port.connect(sqr.seq_item_export);
+    super.connect_phase(phase);
+    if (get_is_active() == UVM_ACTIVE) driver.seq_item_port.connect(sequencer.seq_item_export);
   endfunction
 endclass
