@@ -83,18 +83,29 @@ module ahb2apb_top;
 );
   initial begin
 
-    uvm_config_db#(virtual ahb_if)::set(
-  null, "*", "ahb_vif", ahb_vif
-);
 
-uvm_config_db#(virtual apb_if)::set(
-  null, "*", "apb_vif", apb_vif
-);
-    //run_test("ahb2apb_unmapped_addr_test");
+  uvm_config_db#(virtual ahb_if)::set(
+    null, "*", "ahb_vif", ahb_vif
+  );
+
+  uvm_config_db#(virtual apb_if)::set(
+    null, "*", "apb_vif", apb_vif
+  );
+
+  
+   // run_test("ahb2apb_unmapped_addr_test");
  run_test("ahb2apb_regression_test");
+    //run_test("ahb2apb_back_to_back_test");
     //run_test("ahb2apb_basic_write_test");
- //run_test("read_size_test");
- //   run_test("pstrb_test")i;
-     //run_test("ahb2apb_all_slave_decode_test");
+//    run_test("read_size_test");
+ //   run_test("pstrb_test");
+    //run_test("ahb2apb_all_slave_decode_test");
+    //run_test("ahb2apb_reset_test");
+   // run_test("ahb_hsel_low_test");
+    //run_test("ahb_hreadyout_test");
+  //  run_test("ahb_control_stability_test");
+   // run_test("apb_phase_test");
+ //   run_test("data_integrity_test");
   end
+
 endmodule
