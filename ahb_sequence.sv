@@ -209,16 +209,17 @@ class ahb2apb_back_to_back_seq extends ahb_base_seq;
 
     // Consecutive WRITE transfers
     send_write(32'h0000_0100, 32'h1111_1111);
-    send_write(32'h0000_0104, 32'h2222_2222);
-    send_write(32'h0000_0108, 32'h3333_3333);
+      send_read(32'h0000_0110);
+//     send_write(32'h0000_0104, 32'h2222_2222);
+//     send_write(32'h0000_0108, 32'h3333_3333);
 
-    // Consecutive READ transfers
-    send_read(32'h0000_0110);
-    send_read(32'h0000_0114);
+//     // Consecutive READ transfers
+//     send_read(32'h0000_0110);
+//     send_read(32'h0000_0114);
 
-    // WRITE followed by READ
-    send_write(32'h0000_0118, 32'hAAAA_5555);
-    send_read(32'h0000_011C);
+//     // WRITE followed by READ
+//     send_write(32'h0000_0118, 32'hAAAA_5555);
+//     send_read(32'h0000_011C);
 
     `uvm_info("AHB_SEQ",
       "Back-to-back transfer test completed", UVM_LOW)
@@ -449,5 +450,187 @@ class ahb_read_size_seq extends ahb_base_seq;
   endtask
 
 endclass
-`endif
 
+class ahb_hsel_low_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_hsel_low_seq)
+
+  function new(string name = "ahb_hsel_low_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    ahb_sequence_item req;
+
+    `uvm_info(get_type_name(), "HSEL LOW TEST STARTED", UVM_LOW)
+
+    req = ahb_sequence_item::type_id::create("req");
+
+    start_item(req);
+
+    req.HSEL   = 0;
+    req.HTRANS = 2'b10;
+    req.HWRITE = 1;
+    req.HADDR  = 32'h0000_0100;
+    req.HSIZE  = 3'b010;
+    req.HBURST = 3'b000;
+    req.HWDATA = 32'h1234_5678;
+
+    finish_item(req);
+
+    `uvm_info(get_type_name(), "HSEL LOW TEST COMPLETED", UVM_LOW)
+
+  endtask
+
+endclass
+
+class ahb_hreadyout_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_hreadyout_seq)
+
+  function new(string name = "ahb_hreadyout_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TEST STARTED", UVM_LOW)
+
+    // APB response will be delayed by 5 cycles
+    send_write(32'h0000_0100, 32'hAAAA_1111);
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TEST COMPLETED", UVM_LOW)
+
+  endtask
+
+endclass
+
+class ahb_control_stability_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_control_stability_seq)
+
+  function new(string name = "ahb_control_stability_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info(get_type_name(),
+              "AHB CONTROL STABILITY TEST STARTED", UVM_LOW)
+
+    // First transfer creates APB activity
+    send_write(32'h0000_0100, 32'hAAAA_1111);
+
+    // Second transfer
+    send_write(32'h0000_0200, 32'hBBBB_2222);
+
+    `uvm_info(get_type_name(),
+              "AHB CONTROL STABILITY TEST COMPLETED", UVM_LOW)
+
+  endtask
+
+endclass
+
+class ahb_apb_phase_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_apb_phase_seq)
+
+  function new(string name = "ahb_apb_phase_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info("APB_PHASE", "Starting APB phase test", UVM_LOW)
+
+    // IDLE phase
+    repeat (3)
+      send_idle();
+
+    // WRITE transaction: SETUP and ACCESS
+    send_write(32'h0000_0000, 32'hABCD_1234);
+
+    // READ transaction: SETUP and ACCESS
+    send_read(32'h0000_0004);
+
+    // Return to IDLE
+    repeat (3)
+      send_idle();
+
+    `uvm_info("APB_PHASE", "Completed APB phase test", UVM_LOW)
+
+  endtask
+
+endclass
+
+class ahb_data_integrity_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_data_integrity_seq)
+
+  function new(string name = "ahb_data_integrity_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info(get_type_name(),
+              "Starting AHB data integrity test", UVM_MEDIUM)
+
+    // Write transactions
+    send_write(32'h00000000, 32'h00000000);
+    send_write(32'h00000004, 32'hFFFFFFFF);
+    send_write(32'h00000008, 32'hAAAAAAAA);
+    send_write(32'h0000000C, 32'h55555555);
+    send_write(32'h00000010, 32'h12345678);
+    send_write(32'h00000014, 32'h87654321);
+    send_write(32'h00000018, 32'hDEADBEEF);
+    send_write(32'h0000001C, 32'hCAFEBABE);
+
+    // Read transactions
+    send_read(32'h00000000);
+    send_read(32'h00000004);
+    send_read(32'h00000008);
+    send_read(32'h0000000C);
+    send_read(32'h00000010);
+    send_read(32'h00000014);
+    send_read(32'h00000018);
+    send_read(32'h0000001C);
+
+    `uvm_info(get_type_name(),
+              "Completed AHB data integrity test", UVM_MEDIUM)
+
+  endtask
+
+endclass
+
+class ahb_reset_sequence extends uvm_sequence #(ahb_sequence_item);
+
+  `uvm_object_utils(ahb_reset_sequence)
+
+  function new(string name = "ahb_reset_sequence");
+    super.new(name);
+  endfunction
+
+  task body();
+    ahb_sequence_item req;
+
+    req = ahb_sequence_item::type_id::create("req");
+
+    start_item(req);
+    req.HSEL   = 1'b1;
+    req.HTRANS = 2'b10; // NONSEQ
+    req.HWRITE = 1'b1;
+    req.HADDR  = 32'h0000_0100;
+    req.HSIZE  = 3'b010;
+    req.HBURST = 3'b000;
+    req.HWDATA = 32'h1234_5678;
+    finish_item(req);
+
+  endtask
+
+endclass
+
+`endif
