@@ -1,10 +1,10 @@
+
 class apb_driver extends uvm_driver #(apb_sequence_item);
 
   `uvm_component_utils(apb_driver)
 
   virtual apb_if vif;
 
-  bit noise_prdata = 0;
 
   function new(string name = "apb_driver",
                uvm_component parent = null);
@@ -33,35 +33,52 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
     drive_idle();
     wait_reset_release();
 
-    forever begin
 
-//       `uvm_info("DEBUG",
-//                 "APB driver waiting for sequence item",
-//                 UVM_LOW)
 
-      seq_item_port.get_next_item(req);
+// //       `uvm_info("DEBUG",
+// //                 "APB driver waiting for sequence item",
+// //                 UVM_LOW)
 
-//       `uvm_info("DEBUG",
-//                 "APB response item received",
-//                 UVM_LOW)
+//       seq_item_port.get_next_item(req);
 
-      wait_for_setup();
+// //       `uvm_info("DEBUG",
+// //                 "APB response item received",
+// //                 UVM_LOW)
 
-//       `uvm_info("DEBUG",
-//                 $sformatf("APB SETUP detected: ADDR=%08h WRITE=%0b",
-//                           vif.driver_cb.PADDR,
-//                           vif.driver_cb.PWRITE),
-//                 UVM_LOW)
+//       wait_for_setup();
 
-      respond(req);
+// //       `uvm_info("DEBUG",
+// //                 $sformatf("APB SETUP detected: ADDR=%08h WRITE=%0b",
+// //                           vif.driver_cb.PADDR,
+// //                           vif.driver_cb.PWRITE),
+// //                 UVM_LOW)
 
-//       `uvm_info("DEBUG",
-//                 "APB response task completed",
-//                 UVM_LOW)
+//       respond(req);
 
-      seq_item_port.item_done();
+// //       `uvm_info("DEBUG",
+// //                 "APB response task completed",
+// //                 UVM_LOW)
 
-    end
+//       seq_item_port.item_done();
+      forever begin
+
+  `uvm_info("DEBUG", "APB driver waiting for sequence item", UVM_LOW)
+
+  seq_item_port.get_next_item(req);
+
+  `uvm_info("DEBUG", "APB sequence item received", UVM_LOW)
+
+  wait_for_setup();
+
+  `uvm_info("DEBUG", "APB SETUP detected", UVM_LOW)
+
+  respond(req);
+
+  `uvm_info("DEBUG", "APB response completed", UVM_LOW)
+
+  seq_item_port.item_done();
+
+end
 
   endtask
 
@@ -110,119 +127,66 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
   // --------------------------------------------------
   // WAIT FOR APB SETUP
   // --------------------------------------------------
-  task wait_for_setup();
+ task wait_for_setup();
 
-    forever begin
+  forever begin
 
-      @(vif.driver_cb);
+    @(vif.driver_cb);
 
-      if (in_reset()) begin
-        drive_idle();
-        continue;
-      end
+    `uvm_info("APB_DEBUG",
+      $sformatf(
+        "PRESETn=%0b PSEL=%b PENABLE=%0b PADDR=%h",
+        vif.driver_cb.PRESETn,
+        vif.driver_cb.PSEL,
+        vif.driver_cb.PENABLE,
+        vif.driver_cb.PADDR),
+      UVM_LOW)
 
-      if ((|vif.driver_cb.PSEL) &&
-          (vif.driver_cb.PENABLE === 1'b0))
-        return;
+    if (in_reset()) begin
+      drive_idle();
+      continue;
+    end
+
+    if ((|vif.driver_cb.PSEL) &&
+        (vif.driver_cb.PENABLE === 1'b0)) begin
+
+      `uvm_info("APB_DEBUG", "APB SETUP DETECTED", UVM_LOW)
+      return;
 
     end
 
-  endtask
+  end
+
+endtask
 
   // --------------------------------------------------
   // RESPOND TO APB TRANSFER
   // --------------------------------------------------
   task respond(apb_sequence_item req);
 
-    bit [31:0] rdata;
-    int unsigned waited;
+  bit [31:0] rdata;
+  int unsigned waited;
 
-    // Start with PREADY low
-    vif.driver_cb.PREADY  <= 1'b0;
-    vif.driver_cb.PSLVERR <= 1'b0;
-    vif.driver_cb.PRDATA  <= 32'h0;
+  // Start with PREADY low
+  vif.driver_cb.PREADY  <= 1'b0;
+  vif.driver_cb.PSLVERR <= 1'b0;
+  vif.driver_cb.PRDATA  <= 32'h0;
 
-    // ----------------------------------------------
-    // WAIT FOR ACCESS PHASE
-    // ----------------------------------------------
-    do begin
+  // WAIT FOR ACCESS PHASE
+  do begin
+    @(vif.driver_cb);
 
-      @(vif.driver_cb);
-
-      if (in_reset()) begin
-        drive_idle();
-        return;
-      end
-
-    end
-    while (!access_active());
-
-//     `uvm_info("DEBUG",
-//               $sformatf("APB ACCESS detected: ADDR=%08h WRITE=%0b PSEL=%b",
-//                         vif.driver_cb.PADDR,
-//                         vif.driver_cb.PWRITE,
-//                         vif.driver_cb.PSEL),
-//               UVM_LOW)
-
-    // ----------------------------------------------
-    // HANG / TIMEOUT SCENARIO
-    // ----------------------------------------------
-    if (req.hang) begin
-
-//       `uvm_info("APB_DRV",
-//                 "Holding PREADY low for timeout scenario",
-//                 UVM_MEDIUM)
-
-      forever begin
-
-        @(vif.driver_cb);
-
-        if (in_reset()) begin
-          drive_idle();
-          return;
-        end
-
-        if (!access_active()) begin
-
-//           `uvm_info("DEBUG",
-//                     "DUT ended ACCESS during timeout",
-//                     UVM_LOW)
-
-          drive_idle();
-          return;
-
-        end
-
-      end
-
+    if (in_reset()) begin
+      drive_idle();
+      return;
     end
 
-    // ----------------------------------------------
-    // SELECT READ DATA
-    // ----------------------------------------------
-    if (req.use_read_data)
-      rdata = req.read_data;
-    else
-      rdata = 32'h0;
+  end while (!access_active());
 
-    // ----------------------------------------------
-    // GENERATE WAIT STATES
-    // ----------------------------------------------
-    for (waited = 0;
-         waited < req.wait_cycles;
-         waited++) begin
+  // HANG / TIMEOUT SCENARIO
+  if (req.hang) begin
 
-      vif.driver_cb.PREADY  <= 1'b0;
-      vif.driver_cb.PSLVERR <= 1'b0;
-      vif.driver_cb.PRDATA  <=
-          noise_prdata ? $urandom() : 32'h0;
-
-//       `uvm_info("DEBUG",
-//                 $sformatf("APB WAIT: cycle=%0d PREADY=0 ADDR=%08h",
-//                           waited + 1,
-//                           vif.driver_cb.PADDR),
-//                 UVM_LOW)
-
+    forever begin
       @(vif.driver_cb);
 
       if (in_reset()) begin
@@ -231,33 +195,23 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
       end
 
       if (!access_active()) begin
-
-//         `uvm_info("APB_DRV",
-//                   "DUT ended ACCESS before response",
-//                   UVM_MEDIUM)
-
         drive_idle();
         return;
-
       end
-
     end
 
-    // ----------------------------------------------
-    // COMPLETE APB TRANSFER
-    // ----------------------------------------------
-    vif.driver_cb.PRDATA  <= rdata;
-    vif.driver_cb.PSLVERR <= req.slave_error;
-    vif.driver_cb.PREADY  <= 1'b1;
+  end
 
-//     `uvm_info("DEBUG",
-//               $sformatf("APB PREADY ASSERTED: ADDR=%08h WRITE=%0b RDATA=%08h",
-//                         vif.driver_cb.PADDR,
-//                         vif.driver_cb.PWRITE,
-//                         rdata),
-//               UVM_LOW)
+  // SELECT READ DATA
+  rdata = req.read_data;
 
-    // Wait for DUT to sample PREADY high
+  // GENERATE WAIT STATES
+  for (waited = 0; waited < req.wait_cycles; waited++) begin
+
+    vif.driver_cb.PREADY  <= 1'b0;
+    vif.driver_cb.PSLVERR <= 1'b0;
+    vif.driver_cb.PRDATA  <= 32'h0;
+
     @(vif.driver_cb);
 
     if (in_reset()) begin
@@ -265,25 +219,37 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
       return;
     end
 
-    `uvm_info("APB_DRV",
-              $sformatf(
-                "APB response completed: ADDR=%08h WRITE=%0b DATA=%08h WAIT=%0d ERROR=%0b",
-                vif.driver_cb.PADDR,
-                vif.driver_cb.PWRITE,
-                vif.driver_cb.PWDATA,
-                req.wait_cycles,
-                req.slave_error),
-              UVM_MEDIUM)
+    if (!access_active()) begin
+      drive_idle();
+      return;
+    end
 
-    `uvm_info("DEBUG",
-              $sformatf("After response: PSEL=%b PENABLE=%b",
-                        vif.driver_cb.PSEL,
-                        vif.driver_cb.PENABLE),
-              UVM_LOW)
+  end
 
-    // Return response signals to idle
+  // COMPLETE APB TRANSFER
+  vif.driver_cb.PRDATA  <= rdata;
+  vif.driver_cb.PSLVERR <= req.slave_error;
+  vif.driver_cb.PREADY  <= 1'b1;
+
+  // Wait for DUT to sample PREADY high
+  @(vif.driver_cb);
+
+  if (in_reset()) begin
     drive_idle();
+    return;
+  end
 
-  endtask
+  `uvm_info("APB_DRV",
+    $sformatf("APB response completed: ADDR=%08h WRITE=%0b DATA=%08h WAIT=%0d ERROR=%0b",
+      vif.driver_cb.PADDR,
+      vif.driver_cb.PWRITE,
+      vif.driver_cb.PWDATA,
+      req.wait_cycles,
+      req.slave_error),
+    UVM_MEDIUM)
+
+  drive_idle();
+
+endtask
 
 endclass
