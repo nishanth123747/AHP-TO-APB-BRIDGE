@@ -1,70 +1,72 @@
+interface ahb_if(input logic HCLK);
 
-interface apb_if(input logic PCLK);
+  logic        HRESETn;
 
-  logic        PRESETn;
+  logic        HSEL;
+  logic [31:0] HADDR;
+  logic [1:0]  HTRANS;
+  logic        HWRITE;
+  logic [2:0]  HSIZE;
+  logic [2:0]  HBURST;
+  logic [31:0] HWDATA;
 
-  // APB request signals 
-  logic [31:0] PADDR;
-  logic        PWRITE;
-  logic [31:0] PWDATA;
-  logic [3:0]  PSTRB;
-  logic [7:0]  PSEL;
-  logic        PENABLE;
+  logic [31:0] HRDATA;
+  logic        HREADYOUT;
+  logic        HRESP;
 
-  // APB response signals 
-  logic [31:0] PRDATA;
-  logic        PREADY;
-  logic        PSLVERR;
-
-  clocking driver_cb @(posedge PCLK);
+  // Driver clocking block
+  clocking driver_cb @(posedge HCLK);
     default input #1step output #0;
 
-    output PRDATA;
-    output PREADY;
-    output PSLVERR;
+    output HSEL;
+    output HADDR;
+    output HTRANS;
+    output HWRITE;
+    output HSIZE;
+    output HBURST;
+    output HWDATA;
 
-    input PRESETn;
-    input PADDR;
-    input PWRITE;
-    input PWDATA;
-    input PSTRB;
-    input PSEL;
-    input PENABLE;
+    input HRESETn;
+    input HRDATA;
+    input HREADYOUT;
+    input HRESP;
   endclocking
-  
-  clocking monitor_cb @(posedge PCLK);
+
+  // Monitor clocking block
+  clocking monitor_cb @(posedge HCLK);
     default input #1step output #0;
 
-    input PRESETn;
-    input PADDR;
-    input PWRITE;
-    input PWDATA;
-    input PSTRB;
-    input PSEL;
-    input PENABLE;
-
-    input PRDATA;
-    input PREADY;
-    input PSLVERR;
+    input HRESETn;
+    input HSEL;
+    input HADDR;
+    input HTRANS;
+    input HWRITE;
+    input HSIZE;
+    input HBURST;
+    input HWDATA;
+    input HRDATA;
+    input HREADYOUT;
+    input HRESP;
   endclocking
 
-  // modports
+  // Modports
   modport DRIVER  (clocking driver_cb);
   modport MONITOR (clocking monitor_cb);
 
+  // DUT side modport 
   modport DUT (
-    input  PCLK,
-    input  PRESETn,
-    input  PRDATA,
-    input  PREADY,
-    input  PSLVERR,
-
-    output PADDR,
-    output PWRITE,
-    output PWDATA,
-    output PSTRB,
-    output PSEL,
-    output PENABLE
+    input  HCLK,
+    input  HRESETn,
+    input  HSEL,
+    input  HADDR,
+    input  HTRANS,
+    input  HWRITE,
+    input  HSIZE,
+    input  HBURST,
+    input  HWDATA,
+    output HRDATA,
+    output HREADYOUT,
+    output HRESP
   );
 
 endinterface
