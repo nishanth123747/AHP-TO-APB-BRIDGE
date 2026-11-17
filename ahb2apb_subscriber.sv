@@ -1,5 +1,3 @@
-// `uvm_analysis_imp_decl(_ahb)
-// `uvm_analysis_imp_decl(_apb)
 
 class ahb2apb_subscriber extends uvm_component;
 
@@ -10,6 +8,9 @@ class ahb2apb_subscriber extends uvm_component;
 
   ahb_sequence_item a;
   apb_sequence_item p;
+
+  bit ahb_pending = 0;
+  bit apb_pending = 0;
 
   // =====================================================
   // AHB INPUT COVERAGE
@@ -52,7 +53,7 @@ class ahb2apb_subscriber extends uvm_component;
 
     HWDATA_CP: coverpoint a.HWDATA {
       bins smal = {[32'h00000000:32'h0000FFFF]};
-      bins med = {[32'h00010000:32'h7FFFFFFF]};
+      bins med  = {[32'h00010000:32'h7FFFFFFF]};
       bins lar  = {[32'h80000000:32'hFFFFFFFF]};
     }
 
@@ -79,9 +80,9 @@ class ahb2apb_subscriber extends uvm_component;
     }
 
     PRDATA_CP: coverpoint p.PRDATA {
-      bins sma  = {[32'h00000000:32'h0000FFFF]};
+      bins sma = {[32'h00000000:32'h0000FFFF]};
       bins med = {[32'h00010000:32'h7FFFFFFF]};
-      bins lar  = {[32'h80000000:32'hFFFFFFFF]};
+      bins lar = {[32'h80000000:32'hFFFFFFFF]};
     }
 
     PSLVERR_CP: coverpoint p.PSLVERR {
@@ -107,7 +108,7 @@ class ahb2apb_subscriber extends uvm_component;
 
     PWDATA_CP: coverpoint p.PWDATA {
       bins smal = {[32'h00000000:32'h0000FFFF]};
-      bins med = {[32'h00010000:32'h7FFFFFFF]};
+      bins med  = {[32'h00010000:32'h7FFFFFFF]};
       bins lar  = {[32'h80000000:32'hFFFFFFFF]};
     }
 
@@ -157,8 +158,8 @@ class ahb2apb_subscriber extends uvm_component;
     }
 
     HRDATA_CP: coverpoint a.HRDATA {
-      bins smal  = {[32'h00000000:32'h0000FFFF]};
-      bins med = {[32'h00010000:32'h7FFFFFFF]};
+      bins smal = {[32'h00000000:32'h0000FFFF]};
+      bins med  = {[32'h00010000:32'h7FFFFFFF]};
       bins lar  = {[32'h80000000:32'hFFFFFFFF]};
     }
 
@@ -242,7 +243,7 @@ class ahb2apb_subscriber extends uvm_component;
 
 
   // =====================================================
-  // 1. AHB SAMPLING
+  // AHB SAMPLING
   // =====================================================
 
   function void sample_ahb_coverage();
@@ -254,7 +255,7 @@ class ahb2apb_subscriber extends uvm_component;
 
 
   // =====================================================
-  // 2. APB SAMPLING
+  // APB SAMPLING
   // =====================================================
 
   function void sample_apb_coverage();
@@ -265,13 +266,19 @@ class ahb2apb_subscriber extends uvm_component;
 
 
   // =====================================================
-  // 3. CROSS SAMPLING
+  // CROSS SAMPLING
   // =====================================================
 
   function void sample_cross_coverage();
 
-    if ((a != null) && (p != null))
+    if (ahb_pending && apb_pending) begin
+
       cg_cross.sample();
+
+      ahb_pending = 0;
+      apb_pending = 0;
+
+    end
 
   endfunction
 
@@ -284,7 +291,14 @@ class ahb2apb_subscriber extends uvm_component;
 
     a = t;
 
-    sample_ahb_coverage();
+    if (a != null) begin
+
+      sample_ahb_coverage();
+
+      ahb_pending = 1;
+      sample_cross_coverage();
+
+    end
 
   endfunction
 
@@ -297,7 +311,14 @@ class ahb2apb_subscriber extends uvm_component;
 
     p = t;
 
-    sample_apb_coverage();
+    if (p != null) begin
+
+      sample_apb_coverage();
+
+      apb_pending = 1;
+      sample_cross_coverage();
+
+    end
 
   endfunction
 
