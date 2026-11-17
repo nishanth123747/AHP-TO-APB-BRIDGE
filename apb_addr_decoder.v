@@ -3,7 +3,7 @@ module addr_decoder #(
     parameter ADDR_WIDTH = 32,
     // Slave Adressess and Masks
     parameter [NUM_SLAVES*ADDR_WIDTH-1:0] SLAVE_BASE = {32'h0070_0000, 32'h0060_0000, 32'h0050_0000, 32'h0040_0000, 32'h0030_0000, 32'h0020_0000, 32'h0010_0000, 32'h0000_0000},
-    parameter [NUM_SLAVES*ADDR_WIDTH-1:0] SLAVE_MASK = {32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_1}
+    parameter [NUM_SLAVES*ADDR_WIDTH-1:0] SLAVE_MASK = {32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000, 32'hFFF0_0000}
 )
 (
     input wire [ADDR_WIDTH-1:0] xfer_addr,
@@ -30,7 +30,7 @@ module addr_decoder #(
             if ((xfer_addr & mask[i]) == base[i]) begin
                 slave_sel[i] = 1;
             end
-	        else slave_sel[i] = 0;
+          else slave_sel[i] = 0;
         end
     end
 

@@ -1,0 +1,777 @@
+global coverage_group 0 ahb2apb_pkg::ahb2apb_subscriber::cg_ahb __coverage_ahb2apb_subscriber.cg_ahb unused_ahb2apb_subscriber_cg_ahb_loop_label ahb2apb_pkg 0 1 0 0 0  ( 0 
+)
+ 1 1
+ 93 /fetools/work_area/frontend/Batch_10/nishanth/ahb2apb/AHP-TO-APB-BRIDGE/ahb2apb_subscriber.sv
+ 18 0 0 0 1 0 0 0 0  1
+0
+0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+7
+0
+2
+0
+ 10 HRESETN_CP 20 0 0 0 0 0 60 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn 60 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 14 reset_asserted 21 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 16 reset_deasserted 22 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 7 HSEL_CP 25 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_2 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_2 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 12 not_selected 26 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 8 selected 27 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 9 HTRANS_CP 30 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_3 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_3 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 2 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 4 1 1 0 0 1 1 4 idle 31 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_4 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 4 busy 32 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_5 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 nonseq 33 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_6 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 seq 34 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_7 0 0 0 0 0 0 0
+ 0
+
+ 9 HWRITE_CP 37 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_8 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_8 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 read 38 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 write 39 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 8 HSIZE_CP 42 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_9 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_9 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 3 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 4 1 1 0 0 1 1 13 byte_transfer 43 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_a 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 8 halfword 44 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_b 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 4 word 45 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_c 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 9 oversized 46 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_d 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_e 0 0 0 0 0
+ 0
+
+ 9 HBURST_CP 49 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_f 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_f 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 3 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 1 1 1 1 0 1 1 11 burst_types 50 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_a 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_e 0 0 0 0 0
+ 0
+
+ 9 HWDATA_CP 53 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_10 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_10 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 3 1 1 0 0 1 1 4 smal 54 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_11 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_12 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 med 55 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_13 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_14 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 lar 56 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_15 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_ahb_fn_16 0 0 0 0 0
+ 0
+
+ 14 HWRITE_X_HSIZE 0 59 0 0 0 0 0 2 3 4 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 13 HTRANS_X_HSEL 0 60 0 0 0 0 0 2 2 1 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+end_coverage_group
+global coverage_group 0 ahb2apb_pkg::ahb2apb_subscriber::cg_apb __coverage_ahb2apb_subscriber.cg_apb unused_ahb2apb_subscriber_cg_apb_loop_label ahb2apb_pkg 0 1 0 0 0  ( 0 
+)
+ 0 69 0 0 0 1 0 0 0 0  1
+0
+0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+10
+0
+0
+0
+ 10 PRESETN_CP 71 0 0 0 0 0 60 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn 60 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 14 reset_asserted 72 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 16 reset_deasserted 73 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 9 PREADY_CP 76 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 9 not_ready 77 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 ready 78 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 9 PRDATA_CP 81 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_3 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_3 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 3 1 1 0 0 1 1 3 sma 82 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_4 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_5 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 med 83 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_6 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_7 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 lar 84 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_8 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_9 0 0 0 0 0
+ 0
+
+ 10 PSLVERR_CP 87 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_a 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_a 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 okay 88 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 error 89 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 8 PADDR_CP 92 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_b 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_b 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 8 1 1 0 0 1 1 7 region0 93 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_4 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_c 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region1 94 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_d 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_e 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region2 95 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_f 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_10 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region3 96 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_11 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_12 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region4 97 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_13 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_14 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region5 98 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_15 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_16 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region6 99 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_17 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_18 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 7 region7 100 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_19 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_7 0 0 0 0 0
+ 0
+
+ 9 PWRITE_CP 103 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1a 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1a 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 read 104 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 write 105 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 9 PWDATA_CP 108 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1b 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1b 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 3 1 1 0 0 1 1 4 smal 109 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_4 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_5 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 med 110 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_6 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_7 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 lar 111 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_8 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_9 0 0 0 0 0
+ 0
+
+ 8 PSTRB_CP 114 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1c 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1c 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 4 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 7 1 1 0 0 1 1 5 byte0 115 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1d 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte1 116 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1e 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte2 117 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1f 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte3 118 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_20 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 10 lower_half 119 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_21 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 10 upper_half 120 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_22 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 9 all_bytes 121 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_23 0 0 0 0 0 0 0
+ 0
+
+ 7 PSEL_CP 124 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_24 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_24 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 8 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 8 1 1 0 0 1 1 6 slave0 125 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_25 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave1 126 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_26 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave2 127 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_27 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave3 128 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_28 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave4 129 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_29 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave5 130 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2a 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave6 131 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2b 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 slave7 132 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2c 0 0 0 0 0 0 0
+ 0
+
+ 10 PENABLE_CP 135 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2d 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_2d 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 5 setup 136 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 6 access 137 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_apb_fn_1 0 0 0 0 0 0 0
+ 0
+
+end_coverage_group
+global coverage_group 0 ahb2apb_pkg::ahb2apb_subscriber::cg_output __coverage_ahb2apb_subscriber.cg_output unused_ahb2apb_subscriber_cg_output_loop_label ahb2apb_pkg 0 1 0 0 0  ( 0 
+)
+ 0 147 0 0 0 1 0 0 0 0  1
+0
+0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+3
+0
+0
+0
+ 12 HREADYOUT_CP 149 0 0 0 0 0 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn 63 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 9 not_ready 150 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 ready 151 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 8 HRESP_CP 154 0 0 0 0 0 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_2 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_2 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 okay 155 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 error 156 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_1 0 0 0 0 0 0 0
+ 0
+
+ 9 HRDATA_CP 159 0 0 0 0 0 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_3 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_3 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 3 1 1 0 0 1 1 4 smal 160 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_4 0 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_5 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 med 161 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_6 0 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_7 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 3 lar 162 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_8 0 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_output_fn_9 0 0 0 0 0
+ 0
+
+end_coverage_group
+global coverage_group 0 ahb2apb_pkg::ahb2apb_subscriber::cg_cross __coverage_ahb2apb_subscriber.cg_cross unused_ahb2apb_subscriber_cg_cross_loop_label ahb2apb_pkg 0 1 0 0 0  ( 0 
+)
+ 0 172 0 0 0 1 0 0 0 0  1
+0
+0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+5
+0
+3
+0
+ 8 HSIZE_CP 174 0 0 0 0 0 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn 62 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 3 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 4 1 1 0 0 1 1 13 byte_transfer 175 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_0 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 8 halfword 176 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_1 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 4 word 177 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_2 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 9 oversized 178 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_3 0 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_4 0 0 0 0 0
+ 0
+
+ 9 HWRITE_CP 181 0 0 0 0 0 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_5 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_5 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 read 182 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_6 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 write 183 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_7 0 0 0 0 0 0 0
+ 0
+
+ 9 PREADY_CP 186 0 0 0 0 0 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_8 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_8 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 9 not_ready 187 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_6 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 ready 188 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_7 0 0 0 0 0 0 0
+ 0
+
+ 10 PSLVERR_CP 191 0 0 0 0 0 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_9 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_9 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 1 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 2 1 1 0 0 1 1 4 okay 192 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_6 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 error 193 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_7 0 0 0 0 0 0 0
+ 0
+
+ 8 PSTRB_CP 196 0 0 0 0 0 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_a 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_a 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 4 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 7 1 1 0 0 1 1 5 byte0 197 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_b 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte1 198 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_c 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte2 199 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_d 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 5 byte3 200 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_e 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 10 lower_half 201 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 64 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_f 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 10 upper_half 202 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_10 0 0 0 0 0 0 0
+ 0
+ 1 1 0 0 1 1 9 all_bytes 203 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 65 ahb2apb_subscriber::ahb2apb_pkg_ahb2apb_subscriber_cg_cross_fn_11 0 0 0 0 0 0 0
+ 0
+
+ 13 HSIZE_X_PSTRB 0 206 0 0 0 0 0 2 0 4 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 15 HWRITE_X_PREADY 0 207 0 0 0 0 0 2 1 2 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 16 HWRITE_X_PSLVERR 0 208 0 0 0 0 0 2 1 3 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+end_coverage_group

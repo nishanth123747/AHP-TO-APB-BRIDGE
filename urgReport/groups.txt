@@ -1,0 +1,15 @@
+Testbench Group List
+
+Total Groups Coverage Summary 
+SCORE  WEIGHT 
+ 49.28 1      
+
+
+Total groups in report: 4
+-------------------------------------------------------------------------------
+SCORE  WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                                       
+  0.00 1      100    1        0            64           64                    ahb2apb_pkg::ahb2apb_subscriber::cg_cross  
+ 48.61 1      100    1        0            64           64                    ahb2apb_pkg::ahb2apb_subscriber::cg_ahb    
+ 65.18 1      100    1        0            64           64                    ahb2apb_pkg::ahb2apb_subscriber::cg_apb    
+ 83.33 1      100    1        0            64           64                    ahb2apb_pkg::ahb2apb_subscriber::cg_output 
+

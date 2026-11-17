@@ -1,0 +1,857 @@
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_cross
+
+===============================================================================
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_cross
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+  0.00 1      100    1        64           64            
+
+
+Source File(s) : 
+
+/fetools/work_area/frontend/Batch_10/nishanth/ahb2apb/AHP-TO-APB-BRIDGE/ahb2apb_subscriber.sv
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   ahb2apb_pkg::ahb2apb_subscriber::cg_cross
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 17       17        0       0.00    
+Crosses   36       36        0       0.00    
+
+
+Variables for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_cross
+
+
+VARIABLE   EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+HSIZE_CP   4        4         0       0.00    100  1      1        0                    
+HWRITE_CP  2        2         0       0.00    100  1      1        0                    
+PREADY_CP  2        2         0       0.00    100  1      1        0                    
+PSLVERR_CP 2        2         0       0.00    100  1      1        0                    
+PSTRB_CP   7        7         0       0.00    100  1      1        0                    
+
+
+Crosses for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_cross
+
+
+CROSS            EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+HSIZE_X_PSTRB    28       28        0       0.00    100  1      1        0                     
+HWRITE_X_PREADY  4        4         0       0.00    100  1      1        0                     
+HWRITE_X_PSLVERR 4        4         0       0.00    100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HSIZE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        4         0       0.00    
+
+
+User Defined Bins for HSIZE_CP
+
+
+Uncovered bins
+
+NAME          COUNT AT LEAST NUMBER 
+oversized     0     1        1      
+word          0     1        1      
+halfword      0     1        1      
+byte_transfer 0     1        1      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HWRITE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        2         0       0.00    
+
+
+User Defined Bins for HWRITE_CP
+
+
+Uncovered bins
+
+NAME  COUNT AT LEAST NUMBER 
+write 0     1        1      
+read  0     1        1      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PREADY_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        2         0       0.00    
+
+
+User Defined Bins for PREADY_CP
+
+
+Uncovered bins
+
+NAME      COUNT AT LEAST NUMBER 
+ready     0     1        1      
+not_ready 0     1        1      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PSLVERR_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        2         0       0.00    
+
+
+User Defined Bins for PSLVERR_CP
+
+
+Uncovered bins
+
+NAME  COUNT AT LEAST NUMBER 
+error 0     1        1      
+okay  0     1        1      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PSTRB_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 7        7         0       0.00    
+
+
+User Defined Bins for PSTRB_CP
+
+
+Uncovered bins
+
+NAME       COUNT AT LEAST NUMBER 
+all_bytes  0     1        1      
+upper_half 0     1        1      
+lower_half 0     1        1      
+byte3      0     1        1      
+byte2      0     1        1      
+byte1      0     1        1      
+byte0      0     1        1      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross HSIZE_X_PSTRB
+
+
+Samples crossed: HSIZE_CP PSTRB_CP
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 28       28        0       0.00    28      
+
+
+Automatically Generated Cross Bins for HSIZE_X_PSTRB
+
+
+Uncovered bins
+
+HSIZE_CP PSTRB_CP COUNT AT LEAST NUMBER 
+*        *        --    --       28     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross HWRITE_X_PREADY
+
+
+Samples crossed: HWRITE_CP PREADY_CP
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 4        4         0       0.00    4       
+
+
+Automatically Generated Cross Bins for HWRITE_X_PREADY
+
+
+Uncovered bins
+
+HWRITE_CP PREADY_CP COUNT AT LEAST NUMBER 
+*         *         --    --       4      
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross HWRITE_X_PSLVERR
+
+
+Samples crossed: HWRITE_CP PSLVERR_CP
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 4        4         0       0.00    4       
+
+
+Automatically Generated Cross Bins for HWRITE_X_PSLVERR
+
+
+Uncovered bins
+
+HWRITE_CP PSLVERR_CP COUNT AT LEAST NUMBER 
+*         *          --    --       4      
+
+
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_ahb
+
+===============================================================================
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_ahb
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+ 48.61 1      100    1        64           64            
+
+
+Source File(s) : 
+
+/fetools/work_area/frontend/Batch_10/nishanth/ahb2apb/AHP-TO-APB-BRIDGE/ahb2apb_subscriber.sv
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   ahb2apb_pkg::ahb2apb_subscriber::cg_ahb
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 25       14        11      55.36   
+Crosses   16       12        4       25.00   
+
+
+Variables for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_ahb
+
+
+VARIABLE   EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+HRESETN_CP 2        1         1       50.00   100  1      1        0                    
+HSEL_CP    2        1         1       50.00   100  1      1        0                    
+HTRANS_CP  4        2         2       50.00   100  1      1        0                    
+HWRITE_CP  2        0         2       100.00  100  1      1        0                    
+HSIZE_CP   4        3         1       25.00   100  1      1        0                    
+HBURST_CP  8        7         1       12.50   100  1      1        0                    
+HWDATA_CP  3        0         3       100.00  100  1      1        0                    
+
+
+Crosses for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_ahb
+
+
+CROSS          EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+HWRITE_X_HSIZE 8        6         2       25.00   100  1      1        0                     
+HTRANS_X_HSEL  8        6         2       25.00   100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HRESETN_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for HRESETN_CP
+
+
+Uncovered bins
+
+NAME             COUNT AT LEAST NUMBER 
+reset_deasserted 0     1        1      
+
+
+Covered bins
+
+NAME           COUNT AT LEAST 
+reset_asserted 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HSEL_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for HSEL_CP
+
+
+Uncovered bins
+
+NAME         COUNT AT LEAST NUMBER 
+not_selected 0     1        1      
+
+
+Covered bins
+
+NAME     COUNT AT LEAST 
+selected 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HTRANS_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        2         2       50.00   
+
+
+User Defined Bins for HTRANS_CP
+
+
+Uncovered bins
+
+NAME COUNT AT LEAST NUMBER 
+busy 0     1        1      
+idle 0     1        1      
+
+
+Covered bins
+
+NAME   COUNT AT LEAST 
+seq    1     1        
+nonseq 22    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HWRITE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+User Defined Bins for HWRITE_CP
+
+
+Bins
+
+NAME  COUNT AT LEAST 
+write 18    1        
+read  5     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HSIZE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        3         1       25.00   
+
+
+User Defined Bins for HSIZE_CP
+
+
+Uncovered bins
+
+NAME          COUNT AT LEAST NUMBER 
+oversized     0     1        1      
+halfword      0     1        1      
+byte_transfer 0     1        1      
+
+
+Covered bins
+
+NAME COUNT AT LEAST 
+word 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HBURST_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 8        7         1       12.50   
+
+
+User Defined Bins for HBURST_CP
+
+
+Uncovered bins
+
+NAME          COUNT AT LEAST NUMBER 
+burst_types_1 0     1        1      
+burst_types_2 0     1        1      
+burst_types_3 0     1        1      
+burst_types_4 0     1        1      
+burst_types_5 0     1        1      
+burst_types_6 0     1        1      
+burst_types_7 0     1        1      
+
+
+Covered bins
+
+NAME          COUNT AT LEAST 
+burst_types_0 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HWDATA_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 3        0         3       100.00  
+
+
+User Defined Bins for HWDATA_CP
+
+
+Bins
+
+NAME COUNT AT LEAST 
+lar  2     1        
+med  16    1        
+smal 5     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross HWRITE_X_HSIZE
+
+
+Samples crossed: HWRITE_CP HSIZE_CP
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 8        6         2       25.00   6       
+
+
+Automatically Generated Cross Bins for HWRITE_X_HSIZE
+
+
+Element holes
+
+HWRITE_CP HSIZE_CP                   COUNT AT LEAST NUMBER 
+*         [oversized]                --    --       2      
+*         [halfword , byte_transfer] --    --       4      
+
+
+Covered bins
+
+HWRITE_CP HSIZE_CP COUNT AT LEAST 
+write     word     18    1        
+read      word     5     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross HTRANS_X_HSEL
+
+
+Samples crossed: HTRANS_CP HSEL_CP
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 8        6         2       25.00   6       
+
+
+Automatically Generated Cross Bins for HTRANS_X_HSEL
+
+
+Element holes
+
+HTRANS_CP     HSEL_CP COUNT AT LEAST NUMBER 
+[busy , idle] *       --    --       4      
+
+
+Uncovered bins
+
+HTRANS_CP      HSEL_CP        COUNT AT LEAST NUMBER 
+[seq , nonseq] [not_selected] --    --       2      
+
+
+Covered bins
+
+HTRANS_CP HSEL_CP  COUNT AT LEAST 
+seq       selected 1     1        
+nonseq    selected 22    1        
+
+
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_apb
+
+===============================================================================
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_apb
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+ 65.18 1      100    1        64           64            
+
+
+Source File(s) : 
+
+/fetools/work_area/frontend/Batch_10/nishanth/ahb2apb/AHP-TO-APB-BRIDGE/ahb2apb_subscriber.sv
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   ahb2apb_pkg::ahb2apb_subscriber::cg_apb
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 39       18        21      65.18   
+
+
+Variables for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_apb
+
+
+VARIABLE   EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+PRESETN_CP 2        1         1       50.00   100  1      1        0                    
+PREADY_CP  2        1         1       50.00   100  1      1        0                    
+PRDATA_CP  3        0         3       100.00  100  1      1        0                    
+PSLVERR_CP 2        0         2       100.00  100  1      1        0                    
+PADDR_CP   8        7         1       12.50   100  1      1        0                    
+PWRITE_CP  2        0         2       100.00  100  1      1        0                    
+PWDATA_CP  3        0         3       100.00  100  1      1        0                    
+PSTRB_CP   7        6         1       14.29   100  1      1        0                    
+PSEL_CP    8        2         6       75.00   100  1      1        0                    
+PENABLE_CP 2        1         1       50.00   100  1      1        0                    
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PRESETN_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for PRESETN_CP
+
+
+Uncovered bins
+
+NAME             COUNT AT LEAST NUMBER 
+reset_deasserted 0     1        1      
+
+
+Covered bins
+
+NAME           COUNT AT LEAST 
+reset_asserted 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PREADY_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for PREADY_CP
+
+
+Uncovered bins
+
+NAME      COUNT AT LEAST NUMBER 
+not_ready 0     1        1      
+
+
+Covered bins
+
+NAME  COUNT AT LEAST 
+ready 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PRDATA_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 3        0         3       100.00  
+
+
+User Defined Bins for PRDATA_CP
+
+
+Bins
+
+NAME COUNT AT LEAST 
+lar  1     1        
+med  3     1        
+sma  19    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PSLVERR_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+User Defined Bins for PSLVERR_CP
+
+
+Bins
+
+NAME  COUNT AT LEAST 
+error 2     1        
+okay  21    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PADDR_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 8        7         1       12.50   
+
+
+User Defined Bins for PADDR_CP
+
+
+Uncovered bins
+
+NAME    COUNT AT LEAST NUMBER 
+region7 0     1        1      
+region6 0     1        1      
+region5 0     1        1      
+region4 0     1        1      
+region3 0     1        1      
+region2 0     1        1      
+region1 0     1        1      
+
+
+Covered bins
+
+NAME    COUNT AT LEAST 
+region0 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PWRITE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+User Defined Bins for PWRITE_CP
+
+
+Bins
+
+NAME  COUNT AT LEAST 
+write 18    1        
+read  5     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PWDATA_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 3        0         3       100.00  
+
+
+User Defined Bins for PWDATA_CP
+
+
+Bins
+
+NAME COUNT AT LEAST 
+lar  2     1        
+med  16    1        
+smal 5     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PSTRB_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 7        6         1       14.29   
+
+
+User Defined Bins for PSTRB_CP
+
+
+Uncovered bins
+
+NAME       COUNT AT LEAST NUMBER 
+upper_half 0     1        1      
+lower_half 0     1        1      
+byte3      0     1        1      
+byte2      0     1        1      
+byte1      0     1        1      
+byte0      0     1        1      
+
+
+Covered bins
+
+NAME      COUNT AT LEAST 
+all_bytes 18    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PSEL_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 8        2         6       75.00   
+
+
+User Defined Bins for PSEL_CP
+
+
+Uncovered bins
+
+NAME   COUNT AT LEAST NUMBER 
+slave7 0     1        1      
+slave6 0     1        1      
+
+
+Covered bins
+
+NAME   COUNT AT LEAST 
+slave5 1     1        
+slave4 1     1        
+slave3 1     1        
+slave2 1     1        
+slave1 1     1        
+slave0 18    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable PENABLE_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for PENABLE_CP
+
+
+Uncovered bins
+
+NAME  COUNT AT LEAST NUMBER 
+setup 0     1        1      
+
+
+Covered bins
+
+NAME   COUNT AT LEAST 
+access 23    1        
+
+
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_output
+
+===============================================================================
+Group : ahb2apb_pkg::ahb2apb_subscriber::cg_output
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+ 83.33 1      100    1        64           64            
+
+
+Source File(s) : 
+
+/fetools/work_area/frontend/Batch_10/nishanth/ahb2apb/AHP-TO-APB-BRIDGE/ahb2apb_subscriber.sv
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   ahb2apb_pkg::ahb2apb_subscriber::cg_output
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 7        1         6       83.33   
+
+
+Variables for Group  ahb2apb_pkg::ahb2apb_subscriber::cg_output
+
+
+VARIABLE     EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+HREADYOUT_CP 2        1         1       50.00   100  1      1        0                    
+HRESP_CP     2        0         2       100.00  100  1      1        0                    
+HRDATA_CP    3        0         3       100.00  100  1      1        0                    
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HREADYOUT_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        1         1       50.00   
+
+
+User Defined Bins for HREADYOUT_CP
+
+
+Uncovered bins
+
+NAME  COUNT AT LEAST NUMBER 
+ready 0     1        1      
+
+
+Covered bins
+
+NAME      COUNT AT LEAST 
+not_ready 23    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HRESP_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+User Defined Bins for HRESP_CP
+
+
+Bins
+
+NAME  COUNT AT LEAST 
+error 2     1        
+okay  21    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable HRDATA_CP
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 3        0         3       100.00  
+
+
+User Defined Bins for HRDATA_CP
+
+
+Bins
+
+NAME COUNT AT LEAST 
+lar  1     1        
+med  3     1        
+smal 19    1        
+
+

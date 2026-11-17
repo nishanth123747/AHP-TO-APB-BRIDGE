@@ -219,44 +219,22 @@ endclass
 
 class apb_all_slave_decode_seq extends apb_base_seq;
 
+  `uvm_object_utils(apb_all_slave_decode_seq)
 
-`uvm_object_utils(apb_all_slave_decode_seq)
+  function new(string name = "apb_all_slave_decode_seq");
+    super.new(name);
+  endfunction
 
-function new(string name = "apb_all_slave_decode_seq");
-super.new(name);
-endfunction
+  task body();
 
-task body();
+    `uvm_info("APB_SEQ", "Starting APB address decoding responses", UVM_LOW)
 
-`uvm_info("APB_SEQ", "Starting APB address decoding responses", UVM_LOW)
+    repeat (8)
+      send_config(0, 0, 0, 0, 0);
 
-// Slave 0 response
-send_config(0, 0, 0, 0, 0);
+    `uvm_info("APB_SEQ", "APB address decoding responses completed", UVM_LOW)
 
-// Slave 1 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 2 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 3 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 4 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 5 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 6 response
-send_config(0, 0, 0, 0, 0);
-
-// Slave 7 response
-send_config(0, 0, 0, 0, 0);
-
-`uvm_info("APB_SEQ", "APB address decoding responses completed", UVM_LOW)
-
-endtask
+  endtask
 
 endclass
 
@@ -335,3 +313,4 @@ send_config(
 
 endclass
 `endif
+

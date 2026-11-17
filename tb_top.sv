@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+//`timescale 1ns/1ps
 
 // interfaces
 `include "ahb_if.sv"
@@ -90,10 +90,11 @@ module ahb2apb_top;
 uvm_config_db#(virtual apb_if)::set(
   null, "*", "apb_vif", apb_vif
 );
-   // run_test("ahb2apb_unmapped_addr_test");
- //  run_test("ahb2apb_regression_test");
+    //run_test("ahb2apb_unmapped_addr_test");
+ run_test("ahb2apb_regression_test");
     //run_test("ahb2apb_basic_write_test");
-    run_test("read_size_test");
- //   run_test("pstrb_test");
+ //run_test("read_size_test");
+ //   run_test("pstrb_test")i;
+     //run_test("ahb2apb_all_slave_decode_test");
   end
 endmodule

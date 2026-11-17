@@ -276,10 +276,9 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
               UVM_MEDIUM)
 
     `uvm_info("DEBUG",
-              $sformatf("After response: PSEL=%b PENABLE=%b PREADY=%b",
+              $sformatf("After response: PSEL=%b PENABLE=%b",
                         vif.driver_cb.PSEL,
-                        vif.driver_cb.PENABLE,
-                        vif.driver_cb.PREADY),
+                        vif.driver_cb.PENABLE),
               UVM_LOW)
 
     // Return response signals to idle

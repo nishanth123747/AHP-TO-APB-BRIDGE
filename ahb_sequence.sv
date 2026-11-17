@@ -278,28 +278,13 @@ class ahb2apb_all_slave_decode_seq extends ahb_base_seq;
 
     `uvm_info("AHB_SEQ", "Starting APB address decoding test", UVM_LOW)
 
-    // APB Slave 0
     send_write(32'h0000_0100, 32'h1111_1111);
-
-    // APB Slave 1
     send_write(32'h0010_0100, 32'h2222_2222);
-
-    // APB Slave 2
     send_write(32'h0020_0100, 32'h3333_3333);
-
-    // APB Slave 3
     send_write(32'h0030_0100, 32'h4444_4444);
-
-    // APB Slave 4
     send_write(32'h0040_0100, 32'h5555_5555);
-
-    // APB Slave 5
     send_write(32'h0050_0100, 32'h6666_6666);
-
-    // APB Slave 6
     send_write(32'h0060_0100, 32'h7777_7777);
-
-    // APB Slave 7
     send_write(32'h0070_0100, 32'h8888_8888);
 
     `uvm_info("AHB_SEQ", "APB address decoding sequence completed", UVM_LOW)
@@ -464,5 +449,5 @@ class ahb_read_size_seq extends ahb_base_seq;
   endtask
 
 endclass
-
 `endif
+
