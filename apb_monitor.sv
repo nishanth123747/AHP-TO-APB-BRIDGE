@@ -1,3 +1,66 @@
+// class apb_monitor extends uvm_monitor;
+
+//   `uvm_component_utils(apb_monitor)
+
+//   virtual apb_if vif;
+
+//   uvm_analysis_port #(apb_sequence_item) ap;
+
+//   function new(string name = "apb_monitor",
+//                uvm_component parent = null);
+//     super.new(name, parent);
+//     ap = new("ap", this);
+//   endfunction
+
+//   function void build_phase(uvm_phase phase);
+//     super.build_phase(phase);
+
+//     if (!uvm_config_db#(virtual apb_if)::get(
+//       this, "", "apb_vif", vif))
+//   `uvm_fatal("APB_MON", "APB monitor virtual interface not found")
+//   endfunction
+
+//   task run_phase(uvm_phase phase);
+//     apb_sequence_item tr;
+
+//     forever begin
+//       @(vif.monitor_cb);
+
+//       // Ignore cycles during reset.
+//       if (vif.monitor_cb.PRESETn !== 1'b1)
+//         continue;
+
+//       // Publish only completed APB transfers.
+//       if ((|vif.monitor_cb.PSEL) &&
+//           (vif.monitor_cb.PENABLE === 1'b1) &&
+//           (vif.monitor_cb.PREADY === 1'b1)) begin
+
+//         tr = apb_sequence_item::type_id::create("tr");
+
+//         tr.PADDR   = vif.monitor_cb.PADDR;
+//         tr.PSEL    = vif.monitor_cb.PSEL;
+//         tr.PWRITE  = vif.monitor_cb.PWRITE;
+//         tr.PWDATA  = vif.monitor_cb.PWDATA;
+//         tr.PSTRB   = vif.monitor_cb.PSTRB;
+//         tr.PRDATA  = vif.monitor_cb.PRDATA;
+//         tr.PREADY  = vif.monitor_cb.PREADY;
+//         tr.PSLVERR = vif.monitor_cb.PSLVERR;
+
+//         ap.write(tr);
+
+//         `uvm_info("APB_MON",
+//                   $sformatf(
+//                     "APB transfer completed: ADDR=%08h WRITE=%0b WDATA=%08h RDATA=%08h PSLVERR=%0b PSEL=%0b",
+//                     tr.PADDR, tr.PWRITE, tr.PWDATA,
+//                     tr.PRDATA, tr.PSLVERR, tr.PSEL),
+//                   UVM_MEDIUM)
+//       end
+//     end
+//   endtask
+
+// endclass
+
+
 class apb_monitor extends uvm_monitor;
 
   `uvm_component_utils(apb_monitor)
