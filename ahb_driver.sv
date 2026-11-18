@@ -80,6 +80,7 @@ class ahb_driver extends uvm_driver #(ahb_sequence_item);
   // DRIVE TRANSFER
   // --------------------------------------------------
   
+
 task drive_transfer(ahb_sequence_item t);
 
   // IDLE, BUSY, or unselected transfer
@@ -141,6 +142,7 @@ task drive_transfer(ahb_sequence_item t);
   drive_idle();
 
 endtask
+
 
 endclass
 
