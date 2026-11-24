@@ -91,7 +91,7 @@ module ahb2apb_top;
   uvm_config_db#(virtual apb_if)::set(
     null, "*", "apb_vif", apb_vif
   );
-
+uvm_top.set_timeout(1000000ns, 1);
   
    // run_test("ahb2apb_unmapped_addr_test");
     run_test("ahb2apb_regression_test");
