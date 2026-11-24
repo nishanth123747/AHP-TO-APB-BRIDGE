@@ -86,16 +86,16 @@ class ahb2apb_subscriber extends uvm_component;
       bins error = {1};
     }
 
-    PADDR_CP: coverpoint p.PADDR {
-      bins region0 = {[32'h00000000:32'h0FFFFFFF]};
-      bins region1 = {[32'h10000000:32'h1FFFFFFF]};
-      bins region2 = {[32'h20000000:32'h2FFFFFFF]};
-      bins region3 = {[32'h30000000:32'h3FFFFFFF]};
-      bins region4 = {[32'h40000000:32'h4FFFFFFF]};
-      bins region5 = {[32'h50000000:32'h5FFFFFFF]};
-      bins region6 = {[32'h60000000:32'h6FFFFFFF]};
-      bins region7 = {[32'h70000000:32'h7FFFFFFF]};
-    }
+   PADDR_CP: coverpoint p.PADDR {
+  bins region0 = {[32'h00000000:32'h000FFFFF]};
+  bins region1 = {[32'h00100000:32'h001FFFFF]};
+  bins region2 = {[32'h00200000:32'h002FFFFF]};
+  bins region3 = {[32'h00300000:32'h003FFFFF]};
+  bins region4 = {[32'h00400000:32'h004FFFFF]};
+  bins region5 = {[32'h00500000:32'h005FFFFF]};
+  bins region6 = {[32'h00600000:32'h006FFFFF]};
+  bins region7 = {[32'h00700000:32'h007FFFFF]};
+}
 
     PWRITE_CP: coverpoint p.PWRITE {
       bins read  = {0};
