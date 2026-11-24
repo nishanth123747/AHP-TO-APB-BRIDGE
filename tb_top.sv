@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+
 
 // interfaces
 `include "ahb_if.sv"
