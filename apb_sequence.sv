@@ -277,9 +277,15 @@ class apb_pstrb_seq extends apb_base_seq;
 
   task body();
 
-    repeat (12) begin
+    `uvm_info(get_type_name(),
+              "APB PSTRB RESPONSE SEQUENCE STARTED", UVM_LOW)
+
+    repeat (17) begin
       send_config(0, 0, 0, 32'h0);
     end
+
+    `uvm_info(get_type_name(),
+              "APB PSTRB RESPONSE SEQUENCE COMPLETED", UVM_LOW)
 
   endtask
 
