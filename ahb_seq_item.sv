@@ -1,3 +1,4 @@
+
 class ahb_sequence_item extends uvm_sequence_item;
 
   `uvm_object_utils(ahb_sequence_item)
@@ -13,6 +14,7 @@ class ahb_sequence_item extends uvm_sequence_item;
   bit  HRESP;
 bit HREADYOUT;
   bit HRESETn;
+  bit transaction_complete;
 
 
   function new(string name = "ahb_sequence_item");
