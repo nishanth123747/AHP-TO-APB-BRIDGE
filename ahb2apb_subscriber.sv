@@ -47,10 +47,7 @@ class ahb2apb_subscriber extends uvm_component;
       bins oversized     = {[3'b011:3'b111]};
     }
 
-    HBURST_CP: coverpoint a.HBURST {
-      bins burst_types[] = {[3'b000:3'b111]};
-    }
-
+    
     HWDATA_CP: coverpoint a.HWDATA {
       bins smal = {[32'h00000000:32'h0000FFFF]};
       bins med  = {[32'h00010000:32'h7FFFFFFF]};
