@@ -347,6 +347,7 @@ class ahb2apb_unmapped_addr_seq extends ahb_base_seq;
 
 endclass
 
+
 class ahb_pstrb_seq extends ahb_base_seq;
 
   `uvm_object_utils(ahb_pstrb_seq)
@@ -364,16 +365,16 @@ class ahb_pstrb_seq extends ahb_base_seq;
     // --------------------------------
 
     // Byte at offset 0
-    send_transfer(32'h00000100, 1'b1, 3'b000, 32'h11111111);
+    send_transfer(32'h00000100, 1'b1, 32'h11111111, 3'b000);
 
     // Byte at offset 1
-    send_transfer(32'h00000101, 1'b1, 3'b000, 32'h22222222);
+    send_transfer(32'h00000101, 1'b1, 32'h22222222, 3'b000);
 
     // Byte at offset 2
-    send_transfer(32'h00000102, 1'b1, 3'b000, 32'h33333333);
+    send_transfer(32'h00000102, 1'b1, 32'h33333333, 3'b000);
 
     // Byte at offset 3
-    send_transfer(32'h00000103, 1'b1, 3'b000, 32'h44444444);
+    send_transfer(32'h00000103, 1'b1, 32'h44444444, 3'b000);
 
 
     // --------------------------------
@@ -381,10 +382,10 @@ class ahb_pstrb_seq extends ahb_base_seq;
     // --------------------------------
 
     // Halfword at offset 0
-    send_transfer(32'h00000100, 1'b1, 3'b001, 32'h55555555);
+    send_transfer(32'h00000100, 1'b1, 32'h55555555, 3'b001);
 
     // Halfword at offset 2
-    send_transfer(32'h00000102, 1'b1, 3'b001, 32'h66666666);
+    send_transfer(32'h00000102, 1'b1, 32'h66666666, 3'b001);
 
 
     // --------------------------------
@@ -392,7 +393,7 @@ class ahb_pstrb_seq extends ahb_base_seq;
     // --------------------------------
 
     // Word at offset 0
-    send_transfer(32'h00000100, 1'b1, 3'b010, 32'h77777777);
+    send_transfer(32'h00000100, 1'b1, 32'h77777777, 3'b010);
 
 
     // --------------------------------
@@ -400,25 +401,51 @@ class ahb_pstrb_seq extends ahb_base_seq;
     // --------------------------------
 
     // Halfword at offset 1
-    send_transfer(32'h00000101, 1'b1, 3'b001, 32'h88888888);
+    send_transfer(32'h00000101, 1'b1, 32'h88888888, 3'b001);
 
     // Halfword at offset 3
-    send_transfer(32'h00000103, 1'b1, 3'b001, 32'h99999999);
+    send_transfer(32'h00000103, 1'b1, 32'h99999999, 3'b001);
 
     // Word at offset 1
-    send_transfer(32'h00000101, 1'b1, 3'b010, 32'hAAAAAAAA);
+    send_transfer(32'h00000101, 1'b1, 32'hAAAAAAAA, 3'b010);
 
     // Word at offset 2
-    send_transfer(32'h00000102, 1'b1, 3'b010, 32'hBBBBBBBB);
+    send_transfer(32'h00000102, 1'b1, 32'hBBBBBBBB, 3'b010);
 
     // Word at offset 3
-    send_transfer(32'h00000103, 1'b1, 3'b010, 32'hCCCCCCCC);
+    send_transfer(32'h00000103, 1'b1, 32'hCCCCCCCC, 3'b010);
+
+
+    // --------------------------------
+    // OVERSIZED TRANSFERS
+    // --------------------------------
+
+    // --------------------------------
+// OVERSIZED TRANSFERS
+// --------------------------------
+
+// HSIZE = 3'b011 : 8 bytes
+send_transfer(32'h00000100, 1'b1, 32'hDDDDDDDD, 3'b011);
+
+// HSIZE = 3'b100 : 16 bytes
+send_transfer(32'h00000100, 1'b1, 32'hEEEEEEEE, 3'b100);
+
+// HSIZE = 3'b101 : 32 bytes
+send_transfer(32'h00000100, 1'b1, 32'hAAAAAAAA, 3'b101);
+
+// HSIZE = 3'b110 : 64 bytes
+send_transfer(32'h00000100, 1'b1, 32'hBBBBBBBB, 3'b110);
+
+// HSIZE = 3'b111 : 128 bytes
+send_transfer(32'h00000100, 1'b1, 32'hFFFFFFFF, 3'b111);
+
 
     `uvm_info(get_type_name(), "PSTRB SEQUENCE COMPLETED", UVM_LOW)
 
   endtask
 
 endclass
+
  
 class ahb_read_size_seq extends ahb_base_seq;
 
@@ -606,6 +633,40 @@ class ahb_data_integrity_seq extends ahb_base_seq;
 
 endclass
 
+
+class ahb_control_change_wait_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_control_change_wait_seq)
+
+  function new(string name = "ahb_control_change_wait_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info(get_type_name(),
+              "CONTROL CHANGE DURING WAIT SEQUENCE STARTED",
+              UVM_LOW)
+
+    // Send one AHB write transaction.
+    // APB will introduce 5 wait cycles.
+    send_transfer(
+      32'h00000100,  // HADDR
+      1'b1,          // HWRITE
+      32'hABCD1234,  // HWDATA
+      3'b010,        // HSIZE = WORD
+      2'b10          // HTRANS = NONSEQ
+    );
+
+    `uvm_info(get_type_name(),
+              "AHB WRITE TRANSACTION COMPLETED",
+              UVM_LOW)
+
+  endtask
+
+endclass
+
+
 class ahb_reset_sequence extends uvm_sequence #(ahb_sequence_item);
 
   `uvm_object_utils(ahb_reset_sequence)
@@ -628,6 +689,36 @@ class ahb_reset_sequence extends uvm_sequence #(ahb_sequence_item);
     req.HBURST = 3'b000;
     req.HWDATA = 32'h1234_5678;
     finish_item(req);
+
+  endtask
+
+endclass
+
+
+class ahb_hreadyout_timing_seq extends ahb_base_seq;
+
+  `uvm_object_utils(ahb_hreadyout_timing_seq)
+
+  function new(string name = "ahb_hreadyout_timing_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TIMING TEST STARTED", UVM_LOW)
+
+    // Send one AHB write transaction
+    send_transfer(
+      32'h00000100,  // HADDR
+      1'b1,          // HWRITE
+      32'hABCD1234,  // HWDATA
+      3'b010,        // HSIZE = WORD
+      2'b10          // HTRANS = NONSEQ
+    );
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TIMING TEST COMPLETED", UVM_LOW)
 
   endtask
 
