@@ -445,6 +445,63 @@ class data_integrity_vseq extends ahb2apb_virtual_sequence;
 
 endclass
 
+class ahb_control_change_wait_vseq extends ahb2apb_virtual_sequence;
+
+  `uvm_object_utils(ahb_control_change_wait_vseq)
+
+function new(string name = "ahb_control_change_wait_vseq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    ahb_control_change_wait_seq ahb_seq;
+
+`uvm_info(get_type_name(),
+              "CONTROL CHANGE WAIT VSEQ STARTED",
+              UVM_LOW)
+
+    ahb_seq = ahb_control_change_wait_seq::type_id::create("ahb_seq");
+
+    ahb_seq.start(p_sequencer.ahb_seqr);
+
+`uvm_info(get_type_name(),
+              "CONTROL CHANGE WAIT VSEQ COMPLETED",
+              UVM_LOW)
+
+  endtask
+
+endclass
+
+class ahb_hreadyout_timing_vseq extends ahb2apb_virtual_sequence;
+
+  `uvm_object_utils(ahb_hreadyout_timing_vseq)
+
+function new(string name = "ahb_hreadyout_timing_vseq");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    ahb_hreadyout_timing_seq ahb_seq;
+
+`uvm_info(get_type_name(),
+              "HREADYOUT TIMING VSEQ STARTED", UVM_LOW)
+
+    ahb_seq = ahb_hreadyout_timing_seq::type_id::create("ahb_seq");
+
+    ahb_seq.start(p_sequencer.ahb_seqr);
+
+`uvm_info(get_type_name(),
+              "HREADYOUT TIMING VSEQ COMPLETED", UVM_LOW)
+
+  endtask
+
+endclass
+
+
+
+
 class reset_vseq extends ahb2apb_virtual_sequence;
 
   `uvm_object_utils(reset_vseq)
@@ -452,13 +509,18 @@ class reset_vseq extends ahb2apb_virtual_sequence;
   ahb_reset_sequence ahb_seq;
   apb_reset_sequence apb_seq;
 
+  bit access_seen;
+
   function new(string name = "reset_vseq");
     super.new(name);
   endfunction
 
+
   task body();
 
-    `uvm_info("RESET_VSEQ", "Starting reset scenarios", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "Starting reset scenarios",
+              UVM_MEDIUM)
 
     reset_idle_test();
 
@@ -468,50 +530,179 @@ class reset_vseq extends ahb2apb_virtual_sequence;
 
     ahb_reset_after_apb_test();
 
-    `uvm_info("RESET_VSEQ", "All reset scenarios completed", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "All reset scenarios completed",
+              UVM_MEDIUM)
 
   endtask
 
 
+  // --------------------------------------------------
+  // Helper: Wait for APB ACCESS with timeout
+  // --------------------------------------------------
+
+  task wait_for_apb_access(output bit found);
+
+    int unsigned count;
+
+    found = 0;
+
+    for (count = 0; count < 100; count++) begin
+
+      @(p_sequencer.apb_vif.monitor_cb);
+
+      if ((p_sequencer.apb_vif.monitor_cb.PSEL != 0) &&
+          (p_sequencer.apb_vif.monitor_cb.PENABLE == 1'b1)) begin
+
+        found = 1;
+
+        `uvm_info("RESET_VSEQ",
+                  "APB ACCESS detected",
+                  UVM_LOW)
+
+        return;
+      end
+
+    end
+
+    `uvm_error("RESET_VSEQ",
+               "APB ACCESS not detected within 100 PCLK cycles")
+
+  endtask
+
+
+  // --------------------------------------------------
+  // Helper: Wait for AHB address phase with timeout
+  // --------------------------------------------------
+
+  task wait_for_ahb_address(output bit found);
+
+    int unsigned count;
+
+    found = 0;
+
+    for (count = 0; count < 100; count++) begin
+
+      @(p_sequencer.ahb_vif.monitor_cb);
+
+      if ((p_sequencer.ahb_vif.monitor_cb.HSEL == 1'b1) &&
+          (p_sequencer.ahb_vif.monitor_cb.HTRANS[1] == 1'b1)) begin
+
+        found = 1;
+
+        `uvm_info("RESET_VSEQ",
+                  "AHB address phase detected",
+                  UVM_LOW)
+
+        return;
+      end
+
+    end
+
+    `uvm_error("RESET_VSEQ",
+               "AHB address phase not detected within 100 HCLK cycles")
+
+  endtask
+
+
+  // --------------------------------------------------
+  // Helper: Wait for a sequence to finish with timeout
+  // --------------------------------------------------
+
+  task wait_for_sequence_completion(bit is_ahb);
+
+    int unsigned count;
+
+    if (is_ahb) begin
+
+      for (count = 0; count < 1000; count++) begin
+
+        if (!ahb_seq.is_active())
+          return;
+
+        @(p_sequencer.ahb_vif.monitor_cb);
+
+      end
+
+      `uvm_error("RESET_VSEQ",
+                 "AHB sequence did not complete within 1000 HCLK cycles")
+
+    end
+    else begin
+
+      for (count = 0; count < 1000; count++) begin
+
+        if (!apb_seq.is_active())
+          return;
+
+        @(p_sequencer.apb_vif.monitor_cb);
+
+      end
+
+      `uvm_error("RESET_VSEQ",
+                 "APB sequence did not complete within 1000 PCLK cycles")
+
+    end
+
+  endtask
+
+
+  // --------------------------------------------------
   // Scenario 1: Reset while idle
+  // --------------------------------------------------
 
   task reset_idle_test();
 
-    `uvm_info("RESET_VSEQ", "Reset during idle", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "Reset during idle",
+              UVM_MEDIUM)
 
     @(negedge p_sequencer.ahb_vif.HCLK);
 
     p_sequencer.ahb_vif.HRESETn = 1'b0;
     p_sequencer.apb_vif.PRESETn = 1'b0;
 
-    repeat(5) @(posedge p_sequencer.ahb_vif.HCLK);
+    repeat(5)
+      @(posedge p_sequencer.ahb_vif.HCLK);
 
     @(negedge p_sequencer.ahb_vif.HCLK);
 
     p_sequencer.ahb_vif.HRESETn = 1'b1;
     p_sequencer.apb_vif.PRESETn = 1'b1;
 
-    repeat(5) @(posedge p_sequencer.ahb_vif.HCLK);
+    repeat(5)
+      @(posedge p_sequencer.ahb_vif.HCLK);
 
-    if (p_sequencer.apb_vif.PSEL == 0 &&
-        p_sequencer.apb_vif.PENABLE == 0)
-      `uvm_info("RESET_VSEQ", "Idle reset PASS", UVM_LOW)
+    if ((p_sequencer.apb_vif.PSEL == 0) &&
+        (p_sequencer.apb_vif.PENABLE == 0))
+
+      `uvm_info("RESET_VSEQ",
+                "Idle reset PASS",
+                UVM_LOW)
+
     else
-      `uvm_error("RESET_VSEQ", "APB not idle after reset")
+
+      `uvm_error("RESET_VSEQ",
+                 "APB not idle after reset")
 
   endtask
 
 
+  // --------------------------------------------------
   // Scenario 2: PRESETn during active APB transaction
+  // --------------------------------------------------
 
   task preset_active_test();
 
-    `uvm_info("RESET_VSEQ", "PRESETn during active transaction", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "PRESETn during active transaction",
+              UVM_MEDIUM)
 
     fork
+
       begin
         apb_seq = apb_reset_sequence::type_id::create("apb_seq");
-        apb_seq.wait_cycles = 20;
+        apb_seq.wait_cycles = 5;
         apb_seq.hang = 1'b0;
         apb_seq.slave_error = 1'b0;
         apb_seq.start(p_sequencer.apb_seqr);
@@ -521,29 +712,60 @@ class reset_vseq extends ahb2apb_virtual_sequence;
         ahb_seq = ahb_reset_sequence::type_id::create("ahb_seq");
         ahb_seq.start(p_sequencer.ahb_seqr);
       end
+
     join_none
 
-    wait(p_sequencer.apb_vif.PSEL != 0 &&
-         p_sequencer.apb_vif.PENABLE == 1'b1);
+    // Wait until the APB transaction actually reaches ACCESS.
+    wait_for_apb_access(access_seen);
 
+    if (!access_seen) begin
+
+      `uvm_error("RESET_VSEQ",
+                 "Scenario 2 aborted: APB ACCESS not reached")
+
+      disable fork;
+      return;
+
+    end
+
+    // Assert PRESETn during APB ACCESS.
     @(negedge p_sequencer.apb_vif.PCLK);
+
     p_sequencer.apb_vif.PRESETn = 1'b0;
 
-    repeat(5) @(posedge p_sequencer.apb_vif.PCLK);
+    `uvm_info("RESET_VSEQ",
+              "PRESETn asserted during APB ACCESS",
+              UVM_LOW)
+
+    repeat(5)
+      @(posedge p_sequencer.apb_vif.PCLK);
 
     @(negedge p_sequencer.apb_vif.PCLK);
+
     p_sequencer.apb_vif.PRESETn = 1'b1;
 
-    wait fork;
+    `uvm_info("RESET_VSEQ",
+              "PRESETn released",
+              UVM_LOW)
+
+    // Bounded wait for both sequences.
+    wait_for_sequence_completion(1'b1);
+    wait_for_sequence_completion(1'b0);
+
+    disable fork;
 
   endtask
 
 
+  // --------------------------------------------------
   // Scenario 3: HRESETn before APB request
+  // --------------------------------------------------
 
   task ahb_reset_before_apb_test();
 
-    `uvm_info("RESET_VSEQ", "HRESETn before APB request", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "HRESETn before APB request",
+              UVM_MEDIUM)
 
     fork
       begin
@@ -552,32 +774,56 @@ class reset_vseq extends ahb2apb_virtual_sequence;
       end
     join_none
 
-    wait(p_sequencer.ahb_vif.HSEL == 1'b1 &&
-         p_sequencer.ahb_vif.HTRANS[1] == 1'b1);
+    // Wait for AHB address phase.
+    wait_for_ahb_address(access_seen);
+
+    if (!access_seen) begin
+
+      `uvm_error("RESET_VSEQ",
+                 "Scenario 3 aborted: AHB address not detected")
+
+      disable fork;
+      return;
+
+    end
 
     @(negedge p_sequencer.ahb_vif.HCLK);
+
     p_sequencer.ahb_vif.HRESETn = 1'b0;
 
-    repeat(5) @(posedge p_sequencer.ahb_vif.HCLK);
+    `uvm_info("RESET_VSEQ",
+              "HRESETn asserted before APB request",
+              UVM_LOW)
+
+    repeat(5)
+      @(posedge p_sequencer.ahb_vif.HCLK);
 
     @(negedge p_sequencer.ahb_vif.HCLK);
+
     p_sequencer.ahb_vif.HRESETn = 1'b1;
 
-    wait fork;
+    wait_for_sequence_completion(1'b1);
+
+    disable fork;
 
   endtask
 
 
+  // --------------------------------------------------
   // Scenario 4: HRESETn after APB request
+  // --------------------------------------------------
 
   task ahb_reset_after_apb_test();
 
-    `uvm_info("RESET_VSEQ", "HRESETn after APB request", UVM_MEDIUM)
+    `uvm_info("RESET_VSEQ",
+              "HRESETn after APB request",
+              UVM_MEDIUM)
 
     fork
+
       begin
         apb_seq = apb_reset_sequence::type_id::create("apb_seq");
-        apb_seq.wait_cycles = 10;
+        apb_seq.wait_cycles = 5;
         apb_seq.hang = 1'b0;
         apb_seq.slave_error = 1'b0;
         apb_seq.start(p_sequencer.apb_seqr);
@@ -587,24 +833,46 @@ class reset_vseq extends ahb2apb_virtual_sequence;
         ahb_seq = ahb_reset_sequence::type_id::create("ahb_seq");
         ahb_seq.start(p_sequencer.ahb_seqr);
       end
+
     join_none
 
-    wait(p_sequencer.apb_vif.PSEL != 0 &&
-         p_sequencer.apb_vif.PENABLE == 1'b1);
+    wait_for_apb_access(access_seen);
 
+    if (!access_seen) begin
+
+      `uvm_error("RESET_VSEQ",
+                 "Scenario 4 aborted: APB ACCESS not reached")
+
+      disable fork;
+      return;
+
+    end
+
+    // Assert HRESETn while APB is in ACCESS.
     @(negedge p_sequencer.ahb_vif.HCLK);
+
     p_sequencer.ahb_vif.HRESETn = 1'b0;
 
-    repeat(5) @(posedge p_sequencer.ahb_vif.HCLK);
+    `uvm_info("RESET_VSEQ",
+              "HRESETn asserted during APB ACCESS",
+              UVM_LOW)
+
+    repeat(5)
+      @(posedge p_sequencer.ahb_vif.HCLK);
 
     @(negedge p_sequencer.ahb_vif.HCLK);
+
     p_sequencer.ahb_vif.HRESETn = 1'b1;
 
-    wait fork;
+    wait_for_sequence_completion(1'b1);
+    wait_for_sequence_completion(1'b0);
+
+    disable fork;
 
   endtask
 
 endclass
+
 
  
    
@@ -638,6 +906,7 @@ class ahb2apb_regression_vseq extends ahb2apb_virtual_sequence;
     ahb_control_stability_vseq control_stability_vseq;
     apb_phase_vseq  phase_vseq;
     data_integrity_vseq integrity_vseq;
+     reset_vseq  rst_vseq;
    
     write_vseq = ahb2apb_basic_write_vseq::type_id::create("write_vseq");
     read_vseq  = ahb2apb_basic_read_vseq::type_id::create("read_vseq");
@@ -655,6 +924,7 @@ class ahb2apb_regression_vseq extends ahb2apb_virtual_sequence;
     control_stability_vseq = ahb_control_stability_vseq::type_id::create("ahb_control_stability_vseq");
     phase_vseq = apb_phase_vseq::type_id::create("apb_phase_vseq");
     integrity_vseq = data_integrity_vseq::type_id::create("data_integrity_vseq");
+    rst_vseq = reset_vseq::type_id::create("rst_vseq");
     
     write_vseq.start(p_sequencer);
     read_vseq.start(p_sequencer);
@@ -672,6 +942,7 @@ class ahb2apb_regression_vseq extends ahb2apb_virtual_sequence;
     control_stability_vseq.start(p_sequencer);
     phase_vseq.start(p_sequencer);
     integrity_vseq.start(p_sequencer);
+    rst_vseq.start(p_sequencer);
     `uvm_info("REG_VSEQ", "Full regression completed", UVM_LOW)
 
   endtask
