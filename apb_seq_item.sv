@@ -1,36 +1,24 @@
-class apb_sequence_item extends uvm_sequence_item;
 
-  `uvm_object_utils(apb_sequence_item)
+class ahb_sequence_item extends uvm_sequence_item;
 
-  // driver configuration fields
-  rand int unsigned wait_cycles;
-  rand bit          slave_error;
-  rand bit          hang;
-  rand bit          use_read_data;
-  rand bit [31:0]   read_data;
+  `uvm_object_utils(ahb_sequence_item)
 
- 
-  // APB  signals 
+  rand bit HSEL;
+  rand bit [31:0] HADDR;
+  rand bit [1:0]  HTRANS;
+  rand bit  HWRITE;
+  rand bit [2:0]  HSIZE;
+  rand bit [2:0]  HBURST;
+  rand bit [31:0] HWDATA;
+  bit [31:0] HRDATA;
+  bit  HRESP;
+bit HREADYOUT;
+  bit HRESETn;
+  bit transaction_complete;
 
-  bit PRESETn;
-  bit [31:0] PADDR;
-  bit [7:0]  PSEL;
-  bit        PWRITE;
-  bit [31:0] PWDATA;
-  bit [3:0]  PSTRB;
-  bit        PENABLE;
 
-  bit [31:0] PRDATA;
-  bit        PREADY;
-  bit        PSLVERR;
-
-  // Optional status / debug fields
-  bit          aborted;
-  int unsigned waited;
-
-  function new(string name = "apb_sequence_item");
+  function new(string name = "ahb_sequence_item");
     super.new(name);
   endfunction
 
 endclass
-
