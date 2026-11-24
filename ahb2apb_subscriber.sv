@@ -28,12 +28,10 @@ class ahb2apb_subscriber extends uvm_component;
       bins selected     = {1};
     }
 
-    HTRANS_CP: coverpoint a.HTRANS {
-      bins idle   = {2'b00};
-      bins busy   = {2'b01};
-      bins nonseq = {2'b10};
-      bins seq    = {2'b11};
-    }
+   HTRANS_CP: coverpoint a.HTRANS[1] {
+  bins invalid_transfer = {0}; // IDLE and BUSY
+  bins valid_transfer   = {1}; // NONSEQ and SEQ
+}
 
     HWRITE_CP: coverpoint a.HWRITE {
       bins read  = {0};
@@ -48,6 +46,7 @@ class ahb2apb_subscriber extends uvm_component;
     }
 
     
+
     HWDATA_CP: coverpoint a.HWDATA {
       bins smal = {[32'h00000000:32'h0000FFFF]};
       bins med  = {[32'h00010000:32'h7FFFFFFF]};
@@ -284,21 +283,24 @@ class ahb2apb_subscriber extends uvm_component;
   // AHB MONITOR CALLBACK
   // =====================================================
 
-  function void write_ahb(ahb_sequence_item t);
+ function void write_ahb(ahb_sequence_item t);
 
-    a = t;
+  a = t;
 
-    if (a != null) begin
+  // Sample AHB control coverage for every observation
+  cg_ahb.sample();
 
-      sample_ahb_coverage();
+  // Process only completed transfers for output and cross coverage
+  if (t.transaction_complete) begin
 
-      ahb_pending = 1;
-      sample_cross_coverage();
+    cg_output.sample();
 
-    end
+    ahb_pending = 1;
+    sample_cross_coverage();
 
-  endfunction
+  end
 
+endfunction
 
   // =====================================================
   // APB MONITOR CALLBACK
