@@ -456,6 +456,72 @@ class data_integrity_test extends ahb2apb_test;
 
 endclass
 
+
+class ahb2apb_control_change_during_wait_test extends ahb2apb_test;
+
+  `uvm_component_utils(ahb2apb_control_change_during_wait_test)
+
+  function new(string name = "ahb2apb_control_change_during_wait_test",
+               uvm_component parent = null);
+    super.new(name, parent);
+  endfunction
+
+  task run_phase(uvm_phase phase);
+
+    ahb_control_change_wait_vseq vseq;
+
+    phase.raise_objection(this);
+
+    `uvm_info(get_type_name(),
+              "CONTROL CHANGE DURING WAIT TEST STARTED",
+              UVM_LOW)
+
+    vseq = ahb_control_change_wait_vseq::type_id::create("vseq");
+     vseq.start(env.v_sequencer);
+
+    `uvm_info(get_type_name(),
+              "CONTROL CHANGE DURING WAIT TEST COMPLETED",
+              UVM_LOW)
+
+    phase.drop_objection(this);
+
+  endtask
+
+endclass
+
+
+class ahb2apb_hreadyout_timing_test extends ahb2apb_test;
+
+  `uvm_component_utils(ahb2apb_hreadyout_timing_test)
+
+  function new(string name = "ahb2apb_hreadyout_timing_test",
+               uvm_component parent = null);
+    super.new(name, parent);
+  endfunction
+
+  task run_phase(uvm_phase phase);
+
+    ahb_hreadyout_timing_vseq vseq;
+
+    phase.raise_objection(this);
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TIMING TEST STARTED", UVM_LOW)
+
+    vseq = ahb_hreadyout_timing_vseq::type_id::create("vseq");
+
+     vseq.start(env.v_sequencer);
+
+    `uvm_info(get_type_name(),
+              "HREADYOUT TIMING TEST COMPLETED", UVM_LOW)
+
+    phase.drop_objection(this);
+
+  endtask
+
+endclass
+
+
 class ahb2apb_reset_test extends ahb2apb_test;
 
   `uvm_component_utils(ahb2apb_reset_test)
