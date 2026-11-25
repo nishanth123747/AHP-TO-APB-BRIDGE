@@ -209,21 +209,23 @@ task run_phase(uvm_phase phase);
       end
 
       // ----------------------------------------------
-      // STEP 6: Publish only a normally completed transfer
-      // ----------------------------------------------
-      if (reset_interrupted) begin
+// STEP 6: Publish completed or interrupted transfer
+// ----------------------------------------------
+if (reset_interrupted) begin
 
-        tr.transaction_complete = 1'b0;
+  tr.transaction_complete = 1'b0;
 
-        `uvm_warning("AHB_MON",
-          $sformatf(
-            "AHB TRANSFER INTERRUPTED BY RESET: ADDR=%08h",
-            tr.HADDR))
+  `uvm_warning("AHB_MON",
+    $sformatf(
+      "AHB TRANSFER INTERRUPTED BY RESET: ADDR=%08h",
+      tr.HADDR
+    )
+  )
 
-        ap.write(tr);
+  ap.write(tr);
 
-      end
-      else begin
+end
+else begin
 
   tr.HREADYOUT = vif.monitor_cb.HREADYOUT;
   tr.HRDATA    = vif.monitor_cb.HRDATA;
@@ -231,15 +233,18 @@ task run_phase(uvm_phase phase);
 
   tr.transaction_complete = 1'b1;
 
-        `uvm_info("AHB_MON",
-          $sformatf(
-            "AHB COMPLETED: TIME=%0t ADDR=%08h WRITE=%0b HWDATA=%08h HRDATA=%08h HRESP=%0b",
-            $time, tr.HADDR, tr.HWRITE,
-            tr.HWDATA, tr.HRDATA, tr.HRESP),
-          UVM_MEDIUM)
+  ap.write(tr);
 
-      end
+  `uvm_info("AHB_MON",
+    $sformatf(
+      "AHB COMPLETED: TIME=%0t ADDR=%08h WRITE=%0b HWDATA=%08h HRDATA=%08h HRESP=%0b",
+      $time, tr.HADDR, tr.HWRITE,
+      tr.HWDATA, tr.HRDATA, tr.HRESP
+    ),
+    UVM_MEDIUM
+  )
 
+end
     end
 
   end
