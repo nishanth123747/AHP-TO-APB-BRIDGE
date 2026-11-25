@@ -225,12 +225,14 @@ task run_phase(uvm_phase phase);
       end
       else begin
 
-        tr.HRDATA = vif.monitor_cb.HRDATA;
-        tr.HRESP  = vif.monitor_cb.HRESP;
+  tr.HREADYOUT = vif.monitor_cb.HREADYOUT;
+  tr.HRDATA    = vif.monitor_cb.HRDATA;
+  tr.HRESP     = vif.monitor_cb.HRESP;
 
-        tr.transaction_complete = 1'b1;
+  tr.transaction_complete = 1'b1;
 
-        ap.write(tr);
+  ap.write(tr);
+      else begin
 
         `uvm_info("AHB_MON",
           $sformatf(
