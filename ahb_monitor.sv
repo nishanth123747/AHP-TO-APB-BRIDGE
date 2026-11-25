@@ -231,9 +231,6 @@ task run_phase(uvm_phase phase);
 
   tr.transaction_complete = 1'b1;
 
-  ap.write(tr);
-      else begin
-
         `uvm_info("AHB_MON",
           $sformatf(
             "AHB COMPLETED: TIME=%0t ADDR=%08h WRITE=%0b HWDATA=%08h HRDATA=%08h HRESP=%0b",
